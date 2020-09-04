@@ -65,23 +65,24 @@ public class PiggyBankController
             }
         }
 
-        double change = amount;
+        float change =  (float) amount;
         for (PiggyBank c : coinList)
         {
             if (c.getValue() <= change && c.getQuantity() > 0){
                 int count = 0;
                 while (c.getQuantity() > 0 && change - c.getValue() >= 0) {
-                    change -= c.getValue();
+                    change -= (float) c.getValue();
                     c.setQuantity(c.getQuantity()-1);
                     count++;
 //                    System.out.println(c.getName() + " " +  c.getValue() + " " +  c.getQuantity() + " " + change);
                 }
 //                System.out.println(c.getName() + " " +  c.getValue() + " " +  c.getQuantity() + " " + change);
-                System.out.println(c.getName() + " $" + count * c.getValue() + ", Change still required: " + change);
+//                System.out.println(c.getName() + " $" + count * c.getValue() + ", Change still required: " + change);
+                System.out.println(c.getName() + " $" + count * c.getValue());
             }
         }
 
-        System.out.println("The piggy bank holds $" + total);
+        System.out.println("The piggy bank holds $" + (total - amount));
         System.out.println("Amount requested: $" + amount);
         if (total > amount) {
             System.out.println("Enough money is available");
